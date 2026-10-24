@@ -1,11 +1,11 @@
-Graphics:
+# Graphics:
 https://reactorcore.itch.io/eradication-wars-weapon-sprite-pack
 http://cbr.sh/qr1gxj
 https://pixeloverload.itch.io/48x-rock-tile-maps
 
-Audio:
-zapsplat.com
-pixabay.com
+# Audio:
+https://www.zapsplat.com
+https://pixabay.com
 https://pixabay.com/music/upbeat-the-final-boss-battle-158700/
 https://opengameart.org/content/revenge-boss-battle (Insydnis)
 https://opengameart.org/content/trance-boss-battle (MintoDog)
@@ -18,8 +18,8 @@ https://freesound.org/people/aj_heels/sounds/523569/
 https://freesound.org/people/AlienXXX/sounds/262417/
 https://freesound.org/people/jobro/sounds/33776/
 
-Text to speech:
+# Text to speech:
 narakeet.com
 
-Font:
+# Font:
 https://www.dafont.com/pixeled.font
