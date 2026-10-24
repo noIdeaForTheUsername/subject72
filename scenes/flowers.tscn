@@ -1,0 +1,206 @@
+[gd_scene load_steps=11 format=3 uid="uid://d16plb0146wgu"]
+
+[ext_resource type="Texture2D" uid="uid://b66frldxwnx54" path="res://graphics/plants/flowers.png" id="1_bsjr7"]
+[ext_resource type="Texture2D" uid="uid://254uxkex85ja" path="res://graphics/plants/flower_unraised.png" id="2_hjsto"]
+[ext_resource type="Texture2D" uid="uid://dmcd33x7rlnw8" path="res://graphics/plants/flower_raised.png" id="3_sk16u"]
+[ext_resource type="Script" path="res://scripts/random_animation_start.gd" id="4_rvtea"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pacea"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hjsto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sk16u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.5
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tkm0h"]
+size = Vector2(54, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6fqb"]
+size = Vector2(54, 4)
+
+[sub_resource type="Gradient" id="Gradient_4121v"]
+offsets = PackedFloat32Array(0, 0.291429, 0.677143, 1)
+colors = PackedColorArray(0.043, 0.43, 0.043, 1, 0.532, 0.57, 0, 1, 0.380392, 0.0862745, 0.72549, 1, 0.843137, 0.117647, 0.54902, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_04v5o"]
+gradient = SubResource("Gradient_4121v")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rshes"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 25.65
+direction = Vector3(1, 0.5, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 55, 0)
+scale_min = 2.0
+scale_max = 5.0
+color_initial_ramp = SubResource("GradientTexture1D_04v5o")
+collision_mode = 2
+
+[node name="Flowers" type="Node2D"]
+
+[node name="Main" type="Sprite2D" parent="."]
+position = Vector2(168, 192)
+scale = Vector2(2, 2)
+texture = ExtResource("1_bsjr7")
+flip_h = true
+
+[node name="Flowers" type="Node2D" parent="."]
+z_index = 3
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Flowers"]
+position = Vector2(142, 34)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_pacea")
+centered = false
+script = ExtResource("4_rvtea")
+max_time = 2.0
+
+[node name="AnimationStart" type="Timer" parent="Flowers/AnimatedSprite2D"]
+one_shot = true
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Flowers"]
+position = Vector2(52, 96)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_pacea")
+centered = false
+script = ExtResource("4_rvtea")
+max_time = 2.0
+
+[node name="AnimationStart" type="Timer" parent="Flowers/AnimatedSprite2D2"]
+one_shot = true
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Flowers"]
+position = Vector2(186, 98)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_pacea")
+centered = false
+script = ExtResource("4_rvtea")
+max_time = 2.0
+
+[node name="AnimationStart" type="Timer" parent="Flowers/AnimatedSprite2D3"]
+one_shot = true
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Flowers"]
+position = Vector2(188, 226)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_pacea")
+centered = false
+script = ExtResource("4_rvtea")
+max_time = 2.0
+
+[node name="AnimationStart" type="Timer" parent="Flowers/AnimatedSprite2D4"]
+one_shot = true
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Flowers"]
+position = Vector2(68, 288)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_pacea")
+centered = false
+script = ExtResource("4_rvtea")
+max_time = 2.0
+
+[node name="AnimationStart" type="Timer" parent="Flowers/AnimatedSprite2D5"]
+one_shot = true
+
+[node name="Platforms" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(105, 126)
+shape = SubResource("RectangleShape2D_tkm0h")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(239, 128)
+shape = SubResource("RectangleShape2D_i6fqb")
+one_way_collision = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(195, 64)
+shape = SubResource("RectangleShape2D_i6fqb")
+one_way_collision = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(241, 256)
+shape = SubResource("RectangleShape2D_i6fqb")
+one_way_collision = true
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(121, 318)
+shape = SubResource("RectangleShape2D_i6fqb")
+one_way_collision = true
+
+[node name="ParticleEmitters" type="Node2D" parent="."]
+z_index = 25
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(195, 64)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_rshes")
+lifetime = 8.0
+preprocess = 5.0
+visibility_rect = Rect2(-100, -100, 700, 1000)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(239, 131)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_rshes")
+lifetime = 8.0
+preprocess = 5.0
+visibility_rect = Rect2(-100, -100, 700, 1000)
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(104, 129)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_rshes")
+lifetime = 8.0
+preprocess = 5.0
+visibility_rect = Rect2(-100, -100, 700, 1000)
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(241, 258)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_rshes")
+lifetime = 8.0
+preprocess = 5.0
+visibility_rect = Rect2(-100, -100, 700, 1000)
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(122, 319)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_rshes")
+lifetime = 8.0
+preprocess = 5.0
+visibility_rect = Rect2(-100, -100, 700, 1000)
+
+[node name="Node2D" type="Node2D" parent="ParticleEmitters"]
+position = Vector2(132, 189)
+
+[node name="Node2D2" type="Node2D" parent="ParticleEmitters"]
+position = Vector2(132, 189)
+
+[node name="FlammableArea" type="Area2D" parent="."]
+z_index = -10
+collision_layer = 2048
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlammableArea"]
+polygon = PackedVector2Array(155, 383, 188, 383, 214, 370, 235, 340, 244, 301, 248, 265, 268, 287, 274, 286, 267, 260, 287, 261, 267, 242, 241, 249, 214, 243, 195, 257, 199, 262, 216, 259, 208, 287, 218, 287, 233, 265, 235, 293, 222, 337, 207, 362, 188, 368, 183, 333, 180, 315, 173, 299, 158, 261, 156, 211, 170, 185, 213, 179, 235, 163, 246, 136, 267, 160, 272, 158, 264, 134, 269, 130, 283, 134, 285, 128, 259, 114, 239, 121, 211, 115, 194, 130, 197, 134, 213, 132, 206, 157, 215, 159, 228, 137, 232, 138, 229, 151, 222, 161, 206, 167, 188, 171, 176, 173, 192, 145, 197, 122, 199, 96, 200, 72, 223, 96, 229, 93, 220, 70, 224, 65, 240, 68, 240, 63, 214, 50, 195, 56, 172, 50, 150, 65, 153, 70, 165, 66, 170, 69, 163, 81, 161, 92, 165, 95, 171, 93, 187, 73, 186, 102, 183, 126, 176, 142, 169, 158, 159, 170, 144, 199, 142, 220, 136, 218, 123, 200, 114, 172, 111, 155, 114, 136, 122, 143, 129, 157, 139, 156, 130, 133, 134, 129, 148, 132, 150, 126, 126, 112, 105, 118, 83, 112, 78, 118, 60, 127, 63, 133, 76, 127, 80, 132, 72, 143, 72, 157, 80, 158, 88, 142, 98, 136, 99, 151, 96, 164, 100, 171, 103, 190, 113, 205, 128, 226, 138, 238, 146, 277, 161, 315, 164, 334, 168, 362, 170, 376, 156, 369, 131, 343, 128, 328, 139, 336, 149, 350, 156, 347, 144, 323, 154, 320, 160, 324, 158, 313, 140, 303, 121, 310, 94, 304, 75, 320, 81, 324, 91, 320, 96, 325, 89, 335, 88, 347, 97, 349, 110, 328, 113, 328, 117, 344, 125, 358, 139, 372)
+
+[connection signal="timeout" from="Flowers/AnimatedSprite2D/AnimationStart" to="Flowers/AnimatedSprite2D" method="_on_animation_start_timeout"]
+[connection signal="timeout" from="Flowers/AnimatedSprite2D2/AnimationStart" to="Flowers/AnimatedSprite2D2" method="_on_animation_start_timeout"]
+[connection signal="timeout" from="Flowers/AnimatedSprite2D3/AnimationStart" to="Flowers/AnimatedSprite2D3" method="_on_animation_start_timeout"]
+[connection signal="timeout" from="Flowers/AnimatedSprite2D4/AnimationStart" to="Flowers/AnimatedSprite2D4" method="_on_animation_start_timeout"]
+[connection signal="timeout" from="Flowers/AnimatedSprite2D5/AnimationStart" to="Flowers/AnimatedSprite2D5" method="_on_animation_start_timeout"]

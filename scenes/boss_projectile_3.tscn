@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccu7wubm405o8"]
+
+[ext_resource type="Script" path="res://scripts/boss_projectile_3.gd" id="1_6idah"]
+[ext_resource type="Texture2D" uid="uid://c08cg4qfx1c2y" path="res://graphics/boss/projectile_3.png" id="2_xwyr6"]
+[ext_resource type="AudioStream" uid="uid://c61lmgtaam3no" path="res://audio_third_party/projectile_3_bounce.wav" id="4_87hix"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_35oum"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wp5v2"]
+light_mode = 1
+
+[node name="BossProjectile3" type="Area2D"]
+collision_layer = 32
+script = ExtResource("1_6idah")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_35oum")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_wp5v2")
+texture = ExtResource("2_xwyr6")
+
+[node name="BounceSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_87hix")
+bus = &"Boss"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

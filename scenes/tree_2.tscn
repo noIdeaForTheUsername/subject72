@@ -1,0 +1,162 @@
+[gd_scene load_steps=15 format=3 uid="uid://c17vqq8abnscs"]
+
+[ext_resource type="Texture2D" uid="uid://cymrd7qs5ji2k" path="res://graphics/plants/tree2.png" id="1_vd372"]
+[ext_resource type="Shader" path="res://scripts/shaders/leaves.gdshader" id="2_hwn1f"]
+[ext_resource type="Texture2D" uid="uid://2ofsqaylbb4b" path="res://graphics/plants/tree2_leaves.png" id="3_iteeq"]
+[ext_resource type="Script" path="res://scripts/leaves.gd" id="4_1drgt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5e2xi"]
+shader = ExtResource("2_hwn1f")
+shader_parameter/relative_player_position = null
+shader_parameter/sprite_size = null
+shader_parameter/minOpacity = 0.15
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1e8c3"]
+size = Vector2(91, 4.99999)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7s8v"]
+size = Vector2(64, 3.4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qcujj"]
+size = Vector2(99, 3.99999)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_manmv"]
+size = Vector2(83, 3.4)
+
+[sub_resource type="Gradient" id="Gradient_s3wlc"]
+colors = PackedColorArray(0.1602, 0.89, 0.768367, 1, 0.219307, 0.2048, 0.64, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nvxy7"]
+gradient = SubResource("Gradient_s3wlc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_185gs"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 50.95
+direction = Vector3(1, 0.5, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 7, 0)
+scale_max = 5.0
+color_initial_ramp = SubResource("GradientTexture1D_nvxy7")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qq47q"]
+gradient = SubResource("Gradient_s3wlc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yqon0"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 33.4
+direction = Vector3(1, 0.5, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 7, 0)
+scale_max = 5.0
+color_initial_ramp = SubResource("GradientTexture1D_qq47q")
+
+[node name="Tree2" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Main" type="Sprite2D" parent="."]
+position = Vector2(144, 288)
+scale = Vector2(2, 2)
+texture = ExtResource("1_vd372")
+
+[node name="DisappearingLeaves" type="Sprite2D" parent="." node_paths=PackedStringArray("pivot")]
+z_index = 3
+material = SubResource("ShaderMaterial_5e2xi")
+position = Vector2(144, 288)
+scale = Vector2(2, 2)
+texture = ExtResource("3_iteeq")
+script = ExtResource("4_1drgt")
+pivot = NodePath("..")
+
+[node name="Platform1" type="CollisionShape2D" parent="."]
+position = Vector2(67.5, 444.5)
+shape = SubResource("RectangleShape2D_1e8c3")
+one_way_collision = true
+
+[node name="Platform2" type="CollisionShape2D" parent="."]
+position = Vector2(224, 519.7)
+shape = SubResource("RectangleShape2D_w7s8v")
+one_way_collision = true
+
+[node name="Platform3" type="CollisionShape2D" parent="."]
+position = Vector2(78.5, 330)
+shape = SubResource("RectangleShape2D_qcujj")
+one_way_collision = true
+
+[node name="Platform4" type="CollisionShape2D" parent="."]
+position = Vector2(219.5, 265.7)
+shape = SubResource("RectangleShape2D_manmv")
+one_way_collision = true
+
+[node name="ParticleEmitters" type="Node2D" parent="."]
+z_index = 25
+position = Vector2(4440, 4440)
+
+[node name="GPUParticles2DTop" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(-4301, -4318)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_185gs")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 10000, 5000)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(-4212, -4220)
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_yqon0")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 10000, 5000)
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(-4213, -4135)
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_yqon0")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 10000, 5000)
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(-4363, -4168)
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_yqon0")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 10000, 5000)
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(-4361, -4091)
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_yqon0")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 10000, 5000)
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(-4398, -4005)
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_yqon0")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 10000, 5000)
+
+[node name="FlammableArea" type="Area2D" parent="."]
+z_index = -10
+collision_layer = 2048
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlammableArea"]
+polygon = PackedVector2Array(3, 575, 85, 574, 121, 541, 122, 559, 116, 574, 144, 574, 150, 525, 165, 521, 179, 575, 204, 575, 193, 534, 221, 546, 221, 575, 283, 575, 258, 553, 257, 526, 246, 514, 189, 511, 175, 446, 177, 283, 198, 284, 189, 312, 192, 346, 219, 335, 238, 311, 266, 340, 278, 314, 266, 312, 261, 279, 270, 246, 254, 228, 285, 206, 272, 187, 246, 205, 206, 189, 186, 207, 190, 252, 176, 258, 170, 167, 187, 132, 208, 129, 208, 169, 238, 184, 264, 174, 273, 152, 269, 122, 253, 100, 232, 90, 258, 81, 274, 66, 278, 40, 257, 31, 247, 50, 232, 45, 161, 92, 139, 16, 106, 17, 88, 32, 100, 100, 69, 100, 77, 65, 53, 54, 27, 67, 12, 90, 13, 119, 28, 145, 31, 154, 25, 175, 42, 199, 67, 196, 88, 168, 89, 144, 114, 174, 123, 206, 129, 266, 129, 278, 130, 321, 118, 320, 60, 318, 40, 323, 29, 337, 37, 351, 56, 348, 46, 363, 51, 389, 65, 388, 77, 373, 88, 394, 107, 393, 120, 371, 119, 348, 128, 348, 128, 376, 116, 438, 110, 438, 100, 418, 79, 404, 60, 397, 58, 416, 41, 409, 40, 396, 22, 387, 21, 404, 25, 419, 25, 429, 18, 445, 26, 468, 50, 466, 70, 471, 102, 477, 86, 508, 76, 536, 55, 553, 34, 566, 14, 566)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="FlammableArea"]
+polygon = PackedVector2Array(61, 318, 31, 284, 35, 269, 57, 276, 55, 263, 63, 257, 60, 242, 76, 250, 80, 263, 85, 259, 95, 261, 122, 278, 118, 321, 107, 320, 105, 303, 93, 302, 80, 287, 70, 297, 73, 307, 68, 318)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="FlammableArea"]
+polygon = PackedVector2Array(138, 15, 160, 30, 175, 24, 172, 18, 196, 11, 216, 16, 233, 35, 231, 47, 215, 60, 205, 46, 190, 47, 177, 62, 164, 50, 151, 71)

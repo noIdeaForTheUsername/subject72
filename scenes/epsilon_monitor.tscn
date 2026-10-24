@@ -1,0 +1,54 @@
+[gd_scene load_steps=12 format=3 uid="uid://byudd2wsm0vt4"]
+
+[ext_resource type="Texture2D" uid="uid://dvdvbn2in46ma" path="res://graphics/epsilon_monitor/epsilon_monitor.png" id="1_uy5fb"]
+[ext_resource type="Script" path="res://scripts/epsilon_monitor.gd" id="2_stww8"]
+[ext_resource type="Texture2D" uid="uid://bgnb8pdgbuwdc" path="res://graphics/epsilon_monitor/epsilon_monitor_base_text.png" id="3_mfnjx"]
+[ext_resource type="PackedScene" uid="uid://cd74iunu3ob4t" path="res://scenes/epsilon_monitor_bar.tscn" id="3_uwwxn"]
+[ext_resource type="Shader" path="res://scripts/shaders/epsilon_monitor_bar.gdshader" id="4_3w87k"]
+[ext_resource type="Texture2D" uid="uid://xbpa5y6fvxvy" path="res://graphics/epsilon_monitor/epsilon_monitor_alerts.png" id="4_ti173"]
+[ext_resource type="Texture2D" uid="uid://bferohrgu2esg" path="res://graphics/epsilon_monitor/epsilon_monitor_circle.png" id="5_byr64"]
+[ext_resource type="Texture2D" uid="uid://cvuwqp6cd7m18" path="res://graphics/epsilon_monitor/epsilon_monitor_protocol.png" id="6_k1jrt"]
+[ext_resource type="Texture2D" uid="uid://cb6mh8dfahfv7" path="res://graphics/epsilon_monitor/epsilon_monitor_breach.png" id="8_wfdal"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1likn"]
+light_mode = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yil11"]
+shader = ExtResource("4_3w87k")
+shader_parameter/cycle_time = 15.0
+
+[node name="EpsilonMonitor" type="Sprite2D"]
+z_index = -185
+z_as_relative = false
+position = Vector2(160, 96)
+texture = ExtResource("1_uy5fb")
+script = ExtResource("2_stww8")
+
+[node name="DisplayedContent" type="Node2D" parent="."]
+material = SubResource("CanvasItemMaterial_1likn")
+
+[node name="BaseText" type="Sprite2D" parent="DisplayedContent"]
+use_parent_material = true
+texture = ExtResource("3_mfnjx")
+
+[node name="Bar" parent="DisplayedContent" instance=ExtResource("3_uwwxn")]
+material = SubResource("ShaderMaterial_yil11")
+position = Vector2(-160, -7.62939e-06)
+
+[node name="Markers" type="Sprite2D" parent="DisplayedContent"]
+use_parent_material = true
+texture = ExtResource("4_ti173")
+
+[node name="Circle" type="Sprite2D" parent="DisplayedContent"]
+use_parent_material = true
+position = Vector2(-115.2, -51.2)
+texture = ExtResource("5_byr64")
+
+[node name="EpsilonText" type="Sprite2D" parent="DisplayedContent"]
+use_parent_material = true
+texture = ExtResource("6_k1jrt")
+
+[node name="BreachText" type="Sprite2D" parent="DisplayedContent"]
+modulate = Color(1, 1, 1, 0)
+use_parent_material = true
+texture = ExtResource("8_wfdal")

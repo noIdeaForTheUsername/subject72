@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp4b5d3dlquj5"]
+
+[ext_resource type="Texture2D" uid="uid://coyor2tffjohx" path="res://graphics/diode.png" id="1_kvgkp"]
+[ext_resource type="Script" path="res://scripts/blinking_diode.gd" id="2_sauy2"]
+
+[node name="BlinkingDiode" type="Sprite2D"]
+texture = ExtResource("1_kvgkp")
+script = ExtResource("2_sauy2")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

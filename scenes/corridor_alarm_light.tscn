@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://c736ltymhg1mw"]
+
+[ext_resource type="Script" path="res://scripts/alarm_light.gd" id="1_kn3q7"]
+[ext_resource type="Texture2D" uid="uid://dyhbdkasdum56" path="res://graphics/alarm_light.png" id="2_d436b"]
+[ext_resource type="AudioStream" uid="uid://hmwq5csfp11a" path="res://audio_third_party/alarm.wav" id="3_yjfmd"]
+
+[sub_resource type="Gradient" id="Gradient_b8ixc"]
+offsets = PackedFloat32Array(0.136126, 0.552356)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bv2v6"]
+gradient = SubResource("Gradient_b8ixc")
+width = 500
+height = 600
+fill = 1
+fill_from = Vector2(0.492308, 0.294872)
+fill_to = Vector2(0.507692, 0.888889)
+
+[node name="CorAlarmLight" type="Node2D"]
+rotation = -3.14159
+script = ExtResource("1_kn3q7")
+
+[node name="LightPivot" type="Node2D" parent="."]
+position = Vector2(0.346436, -26.6843)
+
+[node name="PointLight2D" type="PointLight2D" parent="LightPivot"]
+position = Vector2(-0.347126, -245.316)
+rotation = 3.14159
+color = Color(1, 0, 0, 1)
+texture = SubResource("GradientTexture2D_bv2v6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.31, 0.31, 0.31, 1)
+position = Vector2(0, -17)
+texture = ExtResource("2_d436b")
+
+[node name="AlarmSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_yjfmd")
+max_distance = 600.0
+bus = &"Environment"

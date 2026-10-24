@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://bh872cvd0nnd8"]
+
+[ext_resource type="Texture2D" uid="uid://74m4kmdernrq" path="res://graphics/fire_sprinkler.png" id="1_rei0m"]
+[ext_resource type="Texture2D" uid="uid://jbpkp8bxcv1r" path="res://graphics/smoke.png" id="2_tshhm"]
+
+[sub_resource type="Gradient" id="Gradient_y7ve3"]
+offsets = PackedFloat32Array(0, 0.806306, 1)
+colors = PackedColorArray(1, 1, 1, 0.784314, 1, 1, 1, 0.588235, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d48oq"]
+gradient = SubResource("Gradient_y7ve3")
+
+[sub_resource type="Curve" id="Curve_s0bmq"]
+max_value = 3.0
+_data = [Vector2(0, 0.651347), 0.0, 7.81413, 0, 0, Vector2(0.754237, 2.59826), 0.0, 0.0, 0, 0, Vector2(1, 2.59826), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_0lvd1"]
+curve = SubResource("Curve_s0bmq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_88yls"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(5, 1, 0)
+angle_min = -180.0
+angle_max = 280.0
+direction = Vector3(0, 1, 0)
+spread = 20.0
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+gravity = Vector3(0, -150, 0)
+linear_accel_min = 100.0
+linear_accel_max = 100.0
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_0lvd1")
+color_ramp = SubResource("GradientTexture1D_d48oq")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_segtb"]
+radius = 5.0
+height = 14.0
+
+[node name="FireSprinkler" type="Sprite2D"]
+z_index = -90
+z_as_relative = false
+texture = ExtResource("1_rei0m")
+
+[node name="ParticleEmitter" type="GPUParticles2D" parent="."]
+z_index = 340
+z_as_relative = false
+emitting = false
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_88yls")
+texture = ExtResource("2_tshhm")
+lifetime = 2.5
+visibility_rect = Rect2(-250, 0, 500, 600)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+z_index = -1
+collision_layer = 512
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -3)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_segtb")

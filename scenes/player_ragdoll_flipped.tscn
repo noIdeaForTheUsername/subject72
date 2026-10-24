@@ -1,0 +1,297 @@
+[gd_scene load_steps=20 format=3 uid="uid://djpnebhny2ali"]
+
+[ext_resource type="Texture2D" uid="uid://cjtqtqtvcptm7" path="res://graphics/PLAYER_third_party/ragdoll/head.png" id="1_umpn4"]
+[ext_resource type="Texture2D" uid="uid://ny48dw0xmv8i" path="res://graphics/PLAYER_third_party/ragdoll/torso.png" id="2_jdsqn"]
+[ext_resource type="Texture2D" uid="uid://bgpt7nuxxps3v" path="res://graphics/PLAYER_third_party/ragdoll/frontArmUp.png" id="3_btlme"]
+[ext_resource type="Texture2D" uid="uid://o1gnq27808av" path="res://graphics/PLAYER_third_party/ragdoll/frontArmDown.png" id="4_h8v14"]
+[ext_resource type="Texture2D" uid="uid://byxmk4dnm42fj" path="res://graphics/PLAYER_third_party/ragdoll/backArmUp.png" id="5_dejhv"]
+[ext_resource type="Texture2D" uid="uid://c513w7q0b26up" path="res://graphics/PLAYER_third_party/ragdoll/backArmDown.png" id="6_2vlrn"]
+[ext_resource type="Texture2D" uid="uid://dctevprnuysrq" path="res://graphics/PLAYER_third_party/ragdoll/frontLegUp.png" id="7_ncbli"]
+[ext_resource type="Texture2D" uid="uid://cp2w2adxm8p1t" path="res://graphics/PLAYER_third_party/ragdoll/legDown.png" id="8_c2yok"]
+[ext_resource type="Texture2D" uid="uid://blqpun4o1sv0q" path="res://graphics/PLAYER_third_party/ragdoll/backLegUp.png" id="9_d7min"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6acqo"]
+radius = 6.47959
+height = 15.349
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dkqh7"]
+size = Vector2(10.5428, 18.0067)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kip3v"]
+radius = 2.68916
+height = 12.079
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jqc7p"]
+radius = 1.5926
+height = 10.7154
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mmv2t"]
+radius = 1.89655
+height = 10.1704
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l5eet"]
+radius = 1.89655
+height = 10.1704
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mduxx"]
+radius = 2.60158
+height = 14.5499
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8fwwx"]
+radius = 1.94127
+height = 9.41289
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ejp4s"]
+radius = 2.79768
+height = 14.8877
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d0gr2"]
+radius = 2.05645
+height = 10.1927
+
+[node name="PlayerRagdoll" type="Node2D"]
+z_index = 225
+position = Vector2(3.52741, 0)
+
+[node name="Container" type="Node2D" parent="."]
+position = Vector2(2.4411, 37.6968)
+
+[node name="HeadTorsoJoint" type="PinJoint2D" parent="Container"]
+z_index = 200
+position = Vector2(-3.46743, -70.7637)
+node_a = NodePath("../Head")
+node_b = NodePath("../Torso")
+angular_limit_lower = -1.0472
+angular_limit_upper = 1.5708
+
+[node name="TorsoFArmJoint" type="PinJoint2D" parent="Container"]
+z_index = 200
+position = Vector2(-1.93406, -67.2229)
+node_a = NodePath("../Torso")
+node_b = NodePath("../FrontArmUp")
+
+[node name="FArmJoint" type="PinJoint2D" parent="Container"]
+z_index = 200
+position = Vector2(-13.6659, -55.4738)
+node_a = NodePath("../FrontArmUp")
+node_b = NodePath("../FrontArmDown")
+angular_limit_lower = -1.5708
+angular_limit_upper = 1.0472
+
+[node name="TorsoBArmJoint" type="PinJoint2D" parent="Container"]
+z_index = 200
+position = Vector2(-1.72148, -65.6822)
+node_a = NodePath("../Torso")
+node_b = NodePath("../BackArmUp")
+
+[node name="BArmJoint" type="PinJoint2D" parent="Container"]
+z_index = 200
+position = Vector2(-15.3049, -67.3492)
+node_a = NodePath("../BackArmUp")
+node_b = NodePath("../BackArmDown")
+angular_limit_lower = -1.5708
+angular_limit_upper = 1.0472
+
+[node name="TorsoFLegJoint" type="PinJoint2D" parent="Container"]
+z_index = 200
+position = Vector2(1.61918, -38.4527)
+node_a = NodePath("../Torso")
+node_b = NodePath("../FrontLegUp")
+angular_limit_lower = -1.22173
+angular_limit_upper = 1.22173
+
+[node name="FLegJoint" type="PinJoint2D" parent="Container"]
+z_index = 200
+position = Vector2(-1.67368, -19.0657)
+node_a = NodePath("../FrontLegUp")
+node_b = NodePath("../FrontLegDown")
+angular_limit_lower = -2.61799
+angular_limit_upper = 0.261799
+
+[node name="TorsoBLegJoint" type="PinJoint2D" parent="Container"]
+z_index = 200
+position = Vector2(-7.65817, -38.4043)
+node_a = NodePath("../Torso")
+node_b = NodePath("../BackLegUp")
+angular_limit_lower = -1.22173
+angular_limit_upper = 1.22173
+
+[node name="BLegJoint" type="PinJoint2D" parent="Container"]
+z_index = 200
+position = Vector2(-15.3947, -19.6163)
+node_a = NodePath("../BackLegUp")
+node_b = NodePath("../BackLegDown")
+angular_limit_lower = -2.61799
+angular_limit_upper = 0.261799
+
+[node name="Head" type="RigidBody2D" parent="Container"]
+z_index = 1
+position = Vector2(-8.51513, -61.6334)
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Container/Head"]
+position = Vector2(0, -20.9928)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("1_umpn4")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Head"]
+position = Vector2(0, -21.9928)
+scale = Vector2(1.7, 1.7)
+shape = SubResource("CapsuleShape2D_6acqo")
+
+[node name="Torso" type="RigidBody2D" parent="Container"]
+z_index = 5
+position = Vector2(-2.5689, -46.3386)
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Container/Torso"]
+position = Vector2(-1.70767, -8.24336)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("2_jdsqn")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/Torso"]
+position = Vector2(-1.24453, -7.38914)
+scale = Vector2(1.7, 1.7)
+shape = SubResource("RectangleShape2D_dkqh7")
+
+[node name="FrontArmUp" type="RigidBody2D" parent="Container"]
+z_index = 8
+position = Vector2(-25.3658, -72.4576)
+rotation = -1.57079
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Container/FrontArmUp"]
+position = Vector2(-9.37461, 19.3789)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("3_btlme")
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/FrontArmUp"]
+position = Vector2(-8.49477, 19.6261)
+rotation = 2.34856
+scale = Vector2(1.7, 1.7)
+shape = SubResource("CapsuleShape2D_kip3v")
+
+[node name="FrontArmDown" type="RigidBody2D" parent="Container"]
+z_index = 7
+position = Vector2(-25.3281, -59.7987)
+rotation = -1.57079
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Container/FrontArmDown"]
+position = Vector2(0.726358, 4.91046)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("4_h8v14")
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/FrontArmDown"]
+position = Vector2(-0.640813, 4.71837)
+rotation = 0.47364
+scale = Vector2(1.7, 1.7)
+shape = SubResource("CapsuleShape2D_jqc7p")
+
+[node name="BackArmUp" type="RigidBody2D" parent="Container"]
+z_index = -5
+position = Vector2(8.23717, -70.3145)
+rotation = -1.57079
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Container/BackArmUp"]
+position = Vector2(-3.83311, -14.2075)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("5_dejhv")
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/BackArmUp"]
+position = Vector2(-3.97566, -14.1966)
+rotation = 0.20944
+scale = Vector2(1.7, 1.7)
+shape = SubResource("CapsuleShape2D_mmv2t")
+
+[node name="BackArmDown" type="RigidBody2D" parent="Container"]
+z_index = -6
+position = Vector2(-16.4319, -71.9966)
+rotation = -1.57079
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Container/BackArmDown"]
+position = Vector2(1.28255, -3.98173)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("6_2vlrn")
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/BackArmDown"]
+position = Vector2(0.221088, -3.24215)
+rotation = 0.725172
+scale = Vector2(1.7, 1.7)
+shape = SubResource("CapsuleShape2D_l5eet")
+
+[node name="FrontLegUp" type="RigidBody2D" parent="Container"]
+z_index = 4
+position = Vector2(-8.98217, -29.3524)
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Container/FrontLegUp"]
+position = Vector2(6.40385, -4.84991)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("7_ncbli")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/FrontLegUp"]
+position = Vector2(8.84686, -3.2481)
+rotation = 0.200713
+scale = Vector2(1.7, 1.7)
+shape = SubResource("CapsuleShape2D_mduxx")
+
+[node name="FrontLegDown" type="RigidBody2D" parent="Container"]
+z_index = 3
+position = Vector2(-4.69921, -14.9315)
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Container/FrontLegDown"]
+position = Vector2(4.69168, 2.83199)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("8_c2yok")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/FrontLegDown"]
+position = Vector2(6.13137, 2.48971)
+rotation = -0.226893
+scale = Vector2(1.7, 1.7)
+shape = SubResource("CapsuleShape2D_8fwwx")
+
+[node name="BackLegUp" type="RigidBody2D" parent="Container"]
+z_index = -1
+position = Vector2(-19.1974, -27.6265)
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Container/BackLegUp"]
+position = Vector2(6.40385, -4.84991)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("9_d7min")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/BackLegUp"]
+position = Vector2(6.90833, -2.79271)
+rotation = 0.314159
+scale = Vector2(1.7, 1.7)
+shape = SubResource("CapsuleShape2D_ejp4s")
+
+[node name="BackLegDown" type="RigidBody2D" parent="Container"]
+z_index = -2
+position = Vector2(-22.2253, -16.5841)
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Container/BackLegDown"]
+position = Vector2(8.57297, 4.49397)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("8_c2yok")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Container/BackLegDown"]
+position = Vector2(9.74564, 4.6902)
+rotation = -0.274017
+scale = Vector2(1.7, 1.7)
+shape = SubResource("CapsuleShape2D_d0gr2")

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfjmxmb0ajf6r"]
+
+[ext_resource type="Script" path="res://scripts/door.gd" id="1_qkj0b"]
+[ext_resource type="Texture2D" uid="uid://l4j8mix1c27y" path="res://graphics/door.png" id="2_ot6dt"]
+[ext_resource type="AudioStream" uid="uid://c0mbw8imm065h" path="res://audio_third_party/door.ogg" id="3_rtbn7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wiw2j"]
+size = Vector2(32, 160)
+
+[node name="Door" type="Node2D"]
+z_index = 400
+z_as_relative = false
+script = ExtResource("1_qkj0b")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+position = Vector2(0, 1)
+collision_layer = 1793
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+position = Vector2(0, 80)
+shape = SubResource("RectangleShape2D_wiw2j")
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+position = Vector2(0, 96)
+texture = ExtResource("2_ot6dt")
+
+[node name="MovementSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_rtbn7")
+volume_db = -7.0
+bus = &"Environment"

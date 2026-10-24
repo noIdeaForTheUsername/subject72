@@ -1,0 +1,120 @@
+[gd_scene load_steps=6 format=3 uid="uid://4j45g4jgon7h"]
+
+[ext_resource type="Texture2D" uid="uid://dc0nr6h2kapev" path="res://graphics/pathIndicator.png" id="1_hqpky"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wmx4y"]
+light_mode = 1
+
+[sub_resource type="Animation" id="Animation_wi8uh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Indicator1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Indicator2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Indicator3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.2, 0.2, 0.2, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_em8ob"]
+resource_name = "blinking"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Indicator1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.933333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.2, 0.2, 0.2, 1), Color(0.2, 0.2, 0.2, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Indicator2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.3, 0.7, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.2, 0.2, 0.2, 1), Color(0.2, 0.2, 0.2, 1), Color(1, 1, 1, 1), Color(0.2, 0.2, 0.2, 1), Color(0.2, 0.2, 0.2, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Indicator3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.533333, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.2, 0.2, 0.2, 1), Color(0.2, 0.2, 0.2, 1), Color(1, 1, 1, 1), Color(0.2, 0.2, 0.2, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_754q3"]
+_data = {
+"RESET": SubResource("Animation_wi8uh"),
+"blinking": SubResource("Animation_em8ob")
+}
+
+[node name="BlinkingPathIndicator" type="Node2D"]
+z_index = -170
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_wmx4y")
+
+[node name="Indicator1" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(-70, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("1_hqpky")
+
+[node name="Indicator2" type="Sprite2D" parent="."]
+use_parent_material = true
+scale = Vector2(3, 3)
+texture = ExtResource("1_hqpky")
+
+[node name="Indicator3" type="Sprite2D" parent="."]
+modulate = Color(0.2, 0.2, 0.2, 1)
+use_parent_material = true
+position = Vector2(70, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("1_hqpky")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_754q3")
+}
+autoplay = "blinking"

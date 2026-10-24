@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=3 uid="uid://ghmpkcak8abo"]
+
+[ext_resource type="Texture2D" uid="uid://dhqknjm3lkypi" path="res://graphics/plants/vines2.png" id="1_bdxq5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_woqrl"]
+size = Vector2(88, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sbd36"]
+size = Vector2(2, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1335"]
+size = Vector2(23, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g210b"]
+size = Vector2(42, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vyrok"]
+size = Vector2(28, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dr36c"]
+size = Vector2(26, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w008x"]
+size = Vector2(37, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1sbj"]
+size = Vector2(22, 2)
+
+[node name="Vines" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 144)
+texture = ExtResource("1_bdxq5")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_woqrl")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground"]
+position = Vector2(-39, 6)
+shape = SubResource("RectangleShape2D_sbd36")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground"]
+position = Vector2(39, 6)
+shape = SubResource("RectangleShape2D_sbd36")
+
+[node name="Platforms" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(-29.5, 48.5)
+shape = SubResource("RectangleShape2D_d1335")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(19, 80)
+shape = SubResource("RectangleShape2D_g210b")
+one_way_collision = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(-19, 112)
+shape = SubResource("RectangleShape2D_vyrok")
+one_way_collision = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(-30, 131)
+shape = SubResource("RectangleShape2D_dr36c")
+one_way_collision = true
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(22.5, 129)
+shape = SubResource("RectangleShape2D_w008x")
+one_way_collision = true
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(12, 162)
+shape = SubResource("RectangleShape2D_t1sbj")
+one_way_collision = true
+
+[node name="FlammableArea" type="Area2D" parent="."]
+z_index = -10
+collision_layer = 2048
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlammableArea"]
+polygon = PackedVector2Array(-21, 1, -38, 11, -43, 13, -42, 17, -39, 17, -38, 24, -41, 50, -42, 87, -41, 100, -43, 111, -43, 144, -39, 146, -40, 158, -37, 160, -35, 132, -30, 132, -27, 145, -25, 144, -26, 133, -20, 132, -19, 139, -13, 143, -11, 136, -8, 138, -5, 137, -5, 122, 1, 122, 2, 137, 1, 157, 2, 169, 5, 163, 14, 164, 19, 164, 21, 177, 24, 176, 24, 131, 32, 132, 32, 146, 35, 146, 36, 131, 38, 138, 41, 137, 43, 119, 41, 101, 40, 77, 40, 62, 40, 51, 40, 31, 40, 17, 37, 10, 23, 4, 18, 8, 8, 5, 0, 6, -11, 4)

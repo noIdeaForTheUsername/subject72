@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://lopmik0h3lss"]
+
+[ext_resource type="Script" path="res://scripts/fan.gd" id="1_l7uas"]
+[ext_resource type="Texture2D" uid="uid://bv8y7mmvobv5e" path="res://graphics/fan/fan_tile.png" id="2_c80kh"]
+[ext_resource type="Texture2D" uid="uid://dfkgtd3ugvsb1" path="res://graphics/fan/fan.png" id="3_a4fbq"]
+[ext_resource type="Texture2D" uid="uid://bhjgeewry4r7i" path="res://graphics/fan/fan_bars.png" id="4_muclt"]
+
+[node name="Fan" type="Node2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_l7uas")
+ROTATION_SPEED = 360.0
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("2_c80kh")
+
+[node name="Blades" type="Sprite2D" parent="."]
+texture = ExtResource("3_a4fbq")
+
+[node name="Bars" type="Sprite2D" parent="."]
+texture = ExtResource("4_muclt")

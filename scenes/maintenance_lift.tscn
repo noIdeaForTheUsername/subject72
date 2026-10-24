@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0ii2ibni0d40"]
+
+[ext_resource type="Texture2D" uid="uid://exfr5knyqfax" path="res://graphics/lift.png" id="1_8ts2n"]
+[ext_resource type="Script" path="res://scripts/maintenance_lift.gd" id="1_kpypl"]
+[ext_resource type="AudioStream" uid="uid://dp2jgbj66jwj1" path="res://audio_third_party/elevator.ogg" id="2_14xoi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v1fp6"]
+size = Vector2(192, 6)
+
+[node name="MaintenanceLift" type="AnimatableBody2D" node_paths=PackedStringArray("sound")]
+collision_mask = 0
+script = ExtResource("1_kpypl")
+sound = NodePath("LiftSound")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 5)
+texture = ExtResource("1_8ts2n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 37)
+shape = SubResource("RectangleShape2D_v1fp6")
+
+[node name="LiftSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_14xoi")
+volume_db = 5.0
+pitch_scale = 1.08
+bus = &"Environment"

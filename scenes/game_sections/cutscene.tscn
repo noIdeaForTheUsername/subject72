@@ -1,0 +1,337 @@
+[gd_scene load_steps=24 format=3 uid="uid://bojwtyi8p60ba"]
+
+[ext_resource type="Script" path="res://scripts/cutscene.gd" id="1_8lfwy"]
+[ext_resource type="FontFile" uid="uid://danlg1oagnoos" path="res://Pixeled.ttf" id="1_l17pu"]
+[ext_resource type="Script" path="res://scripts/menu/terminal_label.gd" id="2_1urwc"]
+[ext_resource type="Shader" path="res://scripts/shaders/crt_screen.gdshader" id="2_50xyq"]
+[ext_resource type="AudioStream" uid="uid://bbp1xk4b218sn" path="res://audio_third_party/tick.wav" id="3_04sak"]
+[ext_resource type="AudioStream" uid="uid://cfdevhix8fnhr" path="res://audio_third_party/beep.wav" id="4_c2kuf"]
+[ext_resource type="AudioStream" uid="uid://2aev7tlawapv" path="res://audio_third_party/long_noise.ogg" id="5_2j162"]
+[ext_resource type="Texture2D" uid="uid://ds5ftj7fwogdg" path="res://graphics/epsilon_monitor/epsilon_symbol.png" id="5_k0yqg"]
+[ext_resource type="Texture2D" uid="uid://bferohrgu2esg" path="res://graphics/epsilon_monitor/epsilon_monitor_circle.png" id="6_0hkog"]
+[ext_resource type="AudioStream" uid="uid://dbalvean27g3n" path="res://audio_third_party/noise.wav" id="6_pag7l"]
+[ext_resource type="Script" path="res://scripts/rotate.gd" id="7_2cp07"]
+[ext_resource type="AudioStream" uid="uid://cclkxfa828y3g" path="res://audio_third_party/console_alarm_1.ogg" id="7_vie0j"]
+[ext_resource type="AudioStream" uid="uid://diu16ysewxfhw" path="res://audio_third_party/console_alarm_2.ogg" id="8_frcix"]
+[ext_resource type="Texture2D" uid="uid://byu5awkgsdfpx" path="res://graphics/cutscene_1b.png" id="9_7xkc4"]
+[ext_resource type="Texture2D" uid="uid://2vp1k7ynyurc" path="res://graphics/cutscene_2b.png" id="10_vlj1a"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ipnmn"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_seyx5"]
+width = 960
+height = 540
+seamless_blend_skirt = 0.0
+noise = SubResource("FastNoiseLite_ipnmn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jft4a"]
+shader = ExtResource("2_50xyq")
+shader_parameter/min_noise_intensity = 0.5
+shader_parameter/high_lightness_noise_intensity_coefficient = 2.0
+shader_parameter/bar_speed = 0.2
+shader_parameter/bar_amount = 5.0
+shader_parameter/bar_lightness = 1.5
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_seyx5")
+
+[sub_resource type="LabelSettings" id="LabelSettings_23vs7"]
+line_spacing = 0.0
+font = ExtResource("1_l17pu")
+font_size = 50
+font_color = Color(0, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hdohm"]
+line_spacing = 0.0
+font = ExtResource("1_l17pu")
+font_size = 35
+font_color = Color(0, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_swcao"]
+line_spacing = 0.0
+font = ExtResource("1_l17pu")
+font_size = 35
+font_color = Color(0, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_e8ran"]
+line_spacing = 0.0
+font = ExtResource("1_l17pu")
+font_size = 50
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7bs6b"]
+font = ExtResource("1_l17pu")
+font_size = 25
+
+[node name="Cutscene" type="Control" node_paths=PackedStringArray("global_sounds_node", "shader_rect", "background_rect", "epilepsy_screen", "terminal", "terminal_label", "image_1", "image_2", "skip_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8lfwy")
+global_sounds_node = NodePath("GlobalSounds")
+shader_rect = NodePath("ShaderCanvas/ShaderColorRect")
+background_rect = NodePath("BackgroundRect")
+epilepsy_screen = NodePath("EpilepsyScreen")
+terminal = NodePath("Terminal")
+terminal_label = NodePath("Terminal/Label")
+image_1 = NodePath("Image1")
+image_2 = NodePath("Image2")
+skip_label = NodePath("SkipLabel")
+
+[node name="ShaderCanvas" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="ShaderColorRect" type="ColorRect" parent="ShaderCanvas"]
+visible = false
+material = SubResource("ShaderMaterial_jft4a")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="GlobalSounds" type="Node" parent="."]
+
+[node name="Tick" type="AudioStreamPlayer" parent="GlobalSounds"]
+stream = ExtResource("3_04sak")
+volume_db = -10.0
+bus = &"UI"
+
+[node name="Beep" type="AudioStreamPlayer" parent="GlobalSounds"]
+stream = ExtResource("4_c2kuf")
+bus = &"UI"
+
+[node name="Noise" type="AudioStreamPlayer" parent="GlobalSounds"]
+stream = ExtResource("5_2j162")
+volume_db = -15.0
+bus = &"UI"
+
+[node name="ShortNoise" type="AudioStreamPlayer" parent="GlobalSounds"]
+stream = ExtResource("6_pag7l")
+bus = &"UI"
+
+[node name="ConsoleAlarm1" type="AudioStreamPlayer" parent="GlobalSounds"]
+stream = ExtResource("7_vie0j")
+volume_db = -15.0
+bus = &"UI"
+
+[node name="ConsoleAlarm2" type="AudioStreamPlayer" parent="GlobalSounds"]
+stream = ExtResource("8_frcix")
+volume_db = -15.0
+bus = &"UI"
+
+[node name="BackgroundRect" type="ColorRect" parent="."]
+z_index = -1000
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -42.0
+offset_right = -72.0
+offset_bottom = -42.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.1, 1.1)
+color = Color(0, 0, 0, 1)
+
+[node name="EpilepsyScreen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -920.0
+offset_bottom = -500.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WarningLabel" type="Label" parent="EpilepsyScreen"]
+layout_mode = 0
+offset_top = 361.0
+offset_right = 1920.0
+offset_bottom = 511.0
+text = "EPILEPSY WARNING"
+label_settings = SubResource("LabelSettings_23vs7")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="EpilepsyScreen"]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 529.0
+offset_right = 1540.0
+offset_bottom = 729.0
+text = "The game contains flashing lights"
+label_settings = SubResource("LabelSettings_hdohm")
+horizontal_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Terminal" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Terminal"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 48.0
+offset_right = 409.0
+offset_bottom = 146.0
+label_settings = SubResource("LabelSettings_swcao")
+uppercase = true
+script = ExtResource("2_1urwc")
+
+[node name="EpsilonWarning" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = -960.0
+offset_bottom = -540.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="EpsilonWarning"]
+layout_mode = 0
+offset_left = 359.0
+offset_top = 535.0
+offset_right = 399.0
+offset_bottom = 579.0
+scale = Vector2(10, 10)
+pivot_offset = Vector2(20, 24)
+texture = ExtResource("5_k0yqg")
+
+[node name="TextureRect2" type="TextureRect" parent="EpsilonWarning"]
+layout_mode = 0
+offset_left = 359.0
+offset_top = 504.0
+offset_right = 427.0
+offset_bottom = 572.0
+scale = Vector2(10, 10)
+pivot_offset = Vector2(34, 34)
+texture = ExtResource("6_0hkog")
+script = ExtResource("7_2cp07")
+
+[node name="WarningLabel" type="Label" parent="EpsilonWarning"]
+layout_mode = 0
+offset_left = 786.0
+offset_top = 118.0
+offset_right = 1330.0
+offset_bottom = 258.0
+scale = Vector2(2, 2)
+text = "WARNING!"
+label_settings = SubResource("LabelSettings_e8ran")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="WarningLabel2" type="Label" parent="EpsilonWarning"]
+layout_mode = 0
+offset_left = 787.0
+offset_top = 255.0
+offset_right = 1107.0
+offset_bottom = 395.0
+scale = Vector2(3.5, 3.5)
+text = "EPSILON"
+label_settings = SubResource("LabelSettings_e8ran")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="WarningLabel3" type="Label" parent="EpsilonWarning"]
+layout_mode = 0
+offset_left = 787.0
+offset_top = 665.0
+offset_right = 1512.0
+offset_bottom = 805.0
+scale = Vector2(1.5, 1.5)
+text = "PROTOCOL ACTIVE"
+label_settings = SubResource("LabelSettings_e8ran")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="SkipLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -537.0
+offset_top = -70.0
+offset_right = 102.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(3, 3)
+pivot_offset = Vector2(210, 70)
+text = "PRESS SPACE TO SKIP"
+label_settings = SubResource("LabelSettings_7bs6b")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Image1" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 349.0
+offset_top = -573.0
+offset_right = 1953.0
+offset_bottom = 424.0
+grow_vertical = 2
+scale = Vector2(1.6, 1.6)
+pivot_offset = Vector2(603, 343)
+texture = ExtResource("9_7xkc4")
+
+[node name="ColorRect" type="ColorRect" parent="Image1"]
+z_index = -2
+layout_mode = 0
+offset_top = -518.0
+offset_right = 2670.0
+offset_bottom = 1341.0
+color = Color(0.109804, 0.129412, 0.137255, 1)
+
+[node name="Image2" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -2356.0
+offset_top = -540.0
+offset_right = -650.0
+offset_bottom = 397.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(1.6, 1.6)
+pivot_offset = Vector2(603, 343)
+texture = ExtResource("10_vlj1a")
+
+[node name="ColorRect" type="ColorRect" parent="Image2"]
+z_index = -2
+layout_mode = 0
+offset_left = -944.5
+offset_top = -531.375
+offset_right = 1725.5
+offset_bottom = 1327.63
+color = Color(0.109804, 0.129412, 0.137255, 1)

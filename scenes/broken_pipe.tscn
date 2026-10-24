@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cukjbgk86x3k8"]
+
+[ext_resource type="Texture2D" uid="uid://dvc3a557os4dn" path="res://graphics/pipe.png" id="1_bksy1"]
+
+[node name="BrokenPipe" type="StaticBody2D"]
+modulate = Color(0.619608, 0.235294, 0.235294, 1)
+collision_layer = 1537
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-18, 32, -5, 46, -1, 46, 87, -13, 91, -21, 91, -44, 96, -44, 96, -48, 64, -48, 64, -44, 69, -44, 69, -26)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-96, -48, -96, -44, -91, -44, -91, -20, -84, -8, -73, -2, -58, -1, -58, -23, -69, -23, -69, -44, -64, -44, -64, -48)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bksy1")

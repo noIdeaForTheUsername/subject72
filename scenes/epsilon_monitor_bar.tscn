@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd74iunu3ob4t"]
+
+[ext_resource type="Texture2D" uid="uid://cdjd0e3qe4mx2" path="res://sprites/epsilon_monitor_bar.png" id="1_wgs15"]
+
+[node name="Bar" type="Sprite2D"]
+texture = ExtResource("1_wgs15")
+centered = false

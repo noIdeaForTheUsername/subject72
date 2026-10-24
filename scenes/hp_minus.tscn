@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://d5quj2shuj2b"]
+
+[ext_resource type="Texture2D" uid="uid://jbyrg5qlam04" path="res://graphics/hp_minus.png" id="1_v8knk"]
+[ext_resource type="Script" path="res://scripts/emitter_destroyer.gd" id="2_43jk7"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_j3xg5"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_m53ib"]
+offsets = PackedFloat32Array(0, 0.66, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.9, 0.045, 0.045, 1, 0.3, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jv8gs"]
+gradient = SubResource("Gradient_m53ib")
+
+[sub_resource type="Curve" id="Curve_jx0nn"]
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 7.76831, 0, 0, Vector2(0.236413, 1.49368), -0.18312, -0.18312, 0, 0, Vector2(1, 0), -3.44511, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_avdye"]
+curve = SubResource("Curve_jx0nn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rx3yx"]
+particle_flag_disable_z = true
+spread = 0.0
+initial_velocity_min = 100.0
+initial_velocity_max = 250.0
+gravity = Vector3(0, 0, 0)
+scale_min = 1.2
+scale_max = 2.5
+scale_curve = SubResource("CurveTexture_avdye")
+color_ramp = SubResource("GradientTexture1D_jv8gs")
+
+[node name="HPMinus" type="GPUParticles2D" node_paths=PackedStringArray("timer")]
+z_index = 800
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_j3xg5")
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_rx3yx")
+texture = ExtResource("1_v8knk")
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+script = ExtResource("2_43jk7")
+timer = NodePath("Destroyer")
+
+[node name="Destroyer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Destroyer" to="." method="_on_timer_timeout"]

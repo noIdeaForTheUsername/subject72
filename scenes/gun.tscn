@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://dite2q7hotbvc"]
+
+[ext_resource type="Texture2D" uid="uid://bp16byr1oy1fg" path="res://graphics/gun_third_party/gun.png" id="1_4u2u5"]
+[ext_resource type="Texture2D" uid="uid://c5jpgdh3mwjs4" path="res://graphics/gun_third_party/gun_fire1.png" id="1_dhjeg"]
+[ext_resource type="Texture2D" uid="uid://chverfy7ehf5f" path="res://graphics/gun_third_party/gun_fire2.png" id="2_i3nsv"]
+[ext_resource type="Script" path="res://scripts/gun.gd" id="3_3smj3"]
+[ext_resource type="Texture2D" uid="uid://dgh4iiphmx0qa" path="res://graphics/gun_third_party/gun_fire3.png" id="3_d32f5"]
+[ext_resource type="Texture2D" uid="uid://c4a4rdrc13nrg" path="res://graphics/gun_third_party/gun_fire4.png" id="4_dxstk"]
+[ext_resource type="Texture2D" uid="uid://dktfmp16ri817" path="res://graphics/gun_third_party/gun_fire5.png" id="5_ukdh4"]
+[ext_resource type="AudioStream" uid="uid://4w48hxd74v5e" path="res://audio_third_party/gun.wav" id="8_i1ptt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2nveg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dhjeg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_i3nsv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d32f5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dxstk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ukdh4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_4u2u5")
+}],
+"loop": false,
+"name": &"fire",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4u2u5")
+}],
+"loop": false,
+"name": &"off",
+"speed": 0.0
+}]
+
+[node name="Gun" type="Node2D"]
+position = Vector2(-0.0662193, -0.0662155)
+script = ExtResource("3_3smj3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(8.01813, -1.44771)
+sprite_frames = SubResource("SpriteFrames_2nveg")
+animation = &"off"
+autoplay = "off"
+
+[node name="ProjectileRaycast" type="RayCast2D" parent="."]
+position = Vector2(-10.4427, -3.5119)
+rotation = -1.57079
+target_position = Vector2(0, 37.94)
+
+[node name="ProjectileSpawnPos" type="Node2D" parent="."]
+position = Vector2(20.5241, -3.9502)
+
+[node name="FireSound" type="AudioStreamPlayer" parent="ProjectileSpawnPos"]
+stream = ExtResource("8_i1ptt")
+volume_db = -6.0
+bus = &"Player"

@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlpqgl8s71de4"]
+
+[ext_resource type="Texture2D" uid="uid://dr3qge1yv3gsk" path="res://graphics/wall_door.png" id="1_n7oji"]
+[ext_resource type="FontFile" uid="uid://danlg1oagnoos" path="res://Pixeled.ttf" id="2_b568s"]
+[ext_resource type="Texture2D" uid="uid://cvsnp3kp8glgx" path="res://graphics/tilemaps_third_party/decorationTileset.png" id="3_kdslf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h1vll"]
+line_spacing = 0.0
+font = ExtResource("2_b568s")
+font_size = 10
+font_color = Color(0.113725, 0.133333, 0.141176, 1)
+
+[node name="WallDoor" type="Node2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-1, 0)
+texture = ExtResource("1_n7oji")
+
+[node name="Sign" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(-25, -14)
+texture = ExtResource("3_kdslf")
+region_enabled = true
+region_rect = Rect2(195, 483, 26, 15)
+
+[node name="Text" type="Label" parent="."]
+z_index = 1
+offset_left = -42.0
+offset_top = 30.0
+offset_right = 12.0
+offset_bottom = 58.0
+text = "A-21"
+label_settings = SubResource("LabelSettings_h1vll")
+horizontal_alignment = 1
+clip_text = true
+uppercase = true

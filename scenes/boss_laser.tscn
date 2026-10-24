@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://cva70rgg044v7"]
+
+[ext_resource type="Script" path="res://scripts/boss_laser.gd" id="1_58no2"]
+[ext_resource type="Texture2D" uid="uid://dtmuwf71p2r66" path="res://graphics/boss/laser.png" id="1_73xx7"]
+[ext_resource type="AudioStream" uid="uid://d08rks74s472p" path="res://audio_third_party/boss_laser.ogg" id="3_jkf81"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3ouh6"]
+light_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_15nb7"]
+size = Vector2(37, 10)
+
+[sub_resource type="Gradient" id="Gradient_a871y"]
+offsets = PackedFloat32Array(0, 0.290398, 0.484778, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 0, 0, 1, 0.6, 0, 0, 1, 0.4, 0, 0, 0)
+
+[sub_resource type="Gradient" id="Gradient_qdfff"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.3, 0.3, 1)
+
+[node name="BossLaser" type="Area2D"]
+z_index = 300
+material = SubResource("CanvasItemMaterial_3ouh6")
+collision_layer = 32
+collision_mask = 1024
+script = ExtResource("1_58no2")
+
+[node name="Line2D" type="Line2D" parent="."]
+texture_repeat = 2
+use_parent_material = true
+points = PackedVector2Array(0, 0, 32, 0)
+texture = ExtResource("1_73xx7")
+texture_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(18.5, -4.76837e-07)
+shape = SubResource("RectangleShape2D_15nb7")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(5000, 0)
+collision_mask = 1280
+
+[node name="ActiveSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_jkf81")
+max_distance = 10000.0
+bus = &"Boss"
+
+[node name="Shutdown" type="Timer" parent="."]
+one_shot = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+z_index = 1
+use_parent_material = true
+position = Vector2(31, 0)
+amount = 30
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2(-1, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 450.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_a871y")
+color_initial_ramp = SubResource("Gradient_qdfff")
+
+[connection signal="timeout" from="Shutdown" to="." method="_on_shutdown_timeout"]

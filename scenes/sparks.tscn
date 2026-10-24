@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbvygjru8onit"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_w1it0"]
+light_mode = 1
+
+[sub_resource type="Curve" id="Curve_407f3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hsc34"]
+curve = SubResource("Curve_407f3")
+
+[sub_resource type="Gradient" id="Gradient_vih5t"]
+offsets = PackedFloat32Array(0, 0.487078, 1)
+colors = PackedColorArray(1, 0.916667, 0.5, 1, 1, 0.833333, 0, 1, 0.2, 0.2, 0.2, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vohbd"]
+gradient = SubResource("Gradient_vih5t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pr54f"]
+lifetime_randomness = 0.25
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 30.0
+direction = Vector3(0, -1, 0)
+spread = 90.0
+initial_velocity_min = 30.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 50, 0)
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_vohbd")
+alpha_curve = SubResource("CurveTexture_hsc34")
+hue_variation_min = -0.01
+hue_variation_max = 0.00999998
+
+[node name="Sparks" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_w1it0")
+amount = 7
+process_material = SubResource("ParticleProcessMaterial_pr54f")
+lifetime = 3.0

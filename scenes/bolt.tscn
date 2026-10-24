@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4mp4y7ckumje"]
+
+[ext_resource type="Texture2D" uid="uid://8p8rwkwyska6" path="res://graphics/bolts/bolt1.png" id="1_x48xw"]
+[ext_resource type="Script" path="res://scripts/bolt.gd" id="2_tw114"]
+
+[sub_resource type="Gradient" id="Gradient_d08j8"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_htwf4"]
+gradient = SubResource("Gradient_d08j8")
+width = 48
+height = 48
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 1)
+
+[node name="Bolt1" type="Sprite2D"]
+modulate = Color(10, 10, 10, 1)
+light_mask = 2
+z_index = 700
+z_as_relative = false
+position = Vector2(253, -107)
+rotation = 0.0819391
+texture = ExtResource("1_x48xw")
+script = ExtResource("2_tw114")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 3
+z_index = 800
+z_as_relative = false
+position = Vector2(-186.849, -2.71599)
+color = Color(0.701961, 0.843137, 1, 1)
+range_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_htwf4")
+texture_scale = 0.87
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+light_mask = 3
+z_index = 800
+z_as_relative = false
+position = Vector2(156.623, 1.18492)
+scale = Vector2(1.5, 1.5)
+color = Color(0.701961, 0.843137, 1, 1)
+energy = 2.0
+range_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_htwf4")
+texture_scale = 0.87

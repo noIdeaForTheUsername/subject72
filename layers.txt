@@ -1,0 +1,43 @@
+BACKGROUND:
+- Background Tilemap: -300
+- Background decorations TileMap: -275
+- Magnetic arm (-270)
+- Fans (-250)
+- Background decors (-201 : -249, avg -225)
+- Background text
+- Facility status monitor (-185)
+- Path indicators (-170)
+
+PLANTS: -150
+- Plants + one way platforms
+- Leaves
+- Leaf particles: -125
+- Ending (P4) fire particles (-100)
+- Fire sprinklers (-90)
+
+OBJECTS:
+- PLAYER: Z INDEX 0
+- Player Projectiles
+- Grass (50)
+- Boss fumes [not fire] (75)
+- Ending (P4) fire shards (95)
+- Solid platforms (boxes, lamps) (100)
+- Boss Projectiles + particles (125)
+- Boss Spike Orbs (130)
+- BOSS (150)
+- Player ragdoll (225)
+- Boss lasers + particles (300)
+- Colliding Particles (330)
+- Fire suppression fog (340)
+
+OBJECTS2:
+- Alarms (350)
+- Catwalks (375)
+- Doors (400)
+- Dirt tilemap (450)
+- Walls, ground tilemap (500)
+
+
+
+NEAR-UI OVERLAY:
+- HP Text (800)

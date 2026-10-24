@@ -1,0 +1,172 @@
+[gd_scene load_steps=10 format=4 uid="uid://dmrh16pcc6yfy"]
+
+[ext_resource type="Script" path="res://scenes/boss.gd" id="1_5b4rk"]
+[ext_resource type="Texture2D" uid="uid://bxp0o6yul8tq5" path="res://graphics/boss.png" id="1_c4y4a"]
+[ext_resource type="Texture2D" uid="uid://cure3viirx5t8" path="res://graphics/boss_eyes.png" id="2_dygwk"]
+[ext_resource type="Texture2D" uid="uid://bchv81cpadf2j" path="res://graphics/boss_pupils.png" id="3_aey1e"]
+[ext_resource type="Shader" path="res://scenes/boss_eyes.gdshader" id="4_714am"]
+[ext_resource type="AudioStream" uid="uid://dfgrm7bqfcb5p" path="res://audio/boss_dash.mp3" id="5_tonf7"]
+[ext_resource type="Script" path="res://scenes/boss_eye_pupils.gd" id="6_2mx2w"]
+[ext_resource type="PackedScene" uid="uid://c2bjlxrc8x2tc" path="res://scenes/boss_hair.tscn" id="6_7yxq2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crk8h"]
+shader = ExtResource("4_714am")
+shader_parameter/texture_size = Vector2(1, 1)
+shader_parameter/sprite_position = null
+shader_parameter/rects = PackedVector4Array(0.25, 0.339, 0.379, 0.513, 0.402, 0.496, 0.585, 0.692, 0.616, 0.344, 0.746, 0.513)
+
+[node name="BOSS" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_5b4rk")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.142082, 0.142082)
+polygon = PackedVector2Array(-267.808, 451.666, 68.8944, 464.174, 381.456, 295.765, 49.1913, -6.51804, 392.894, -311.826, 164.894, -425.826, -175.106, -509.826, -165.106, -251.826, -453.106, -203.826, -441.106, -17.8264, -265.106, 162.174)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+scale = Vector2(0.142082, 0.142082)
+polygon = PackedVector2Array(-267.808, 451.666, 68.8944, 464.174, 381.456, 295.765, 49.1913, -6.51804, 392.894, -311.826, 164.894, -425.826, -175.106, -509.826, -165.106, -251.826, -453.106, -203.826, -441.106, -17.8264, -265.106, 162.174)
+
+[node name="Hair" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(64.721, -55.794)
+rotation = 1.02347
+
+[node name="AnimatedSprite2D2" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(70.0784, -54.0082)
+rotation = 0.111146
+
+[node name="AnimatedSprite2D3" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(55.1966, -67.4018)
+rotation = 0.579778
+
+[node name="AnimatedSprite2D4" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(35.4533, -74.8428)
+rotation = 0.0512264
+
+[node name="AnimatedSprite2D5" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(20.5714, -80.2003)
+rotation = 0.297505
+
+[node name="AnimatedSprite2D6" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(1.62176, -85.8554)
+rotation = -0.000560731
+
+[node name="AnimatedSprite2D7" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(-18.0223, -87.8396)
+rotation = -0.000560731
+
+[node name="AnimatedSprite2D8" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(-39.5024, -80.3328)
+rotation = -0.937561
+
+[node name="AnimatedSprite2D9" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(-46.8441, -66.1454)
+rotation = -1.57032
+
+[node name="AnimatedSprite2D10" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(-46.513, -49.9886)
+rotation = -0.725243
+
+[node name="AnimatedSprite2D11" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(-66.0014, -45.6454)
+rotation = -0.329413
+
+[node name="AnimatedSprite2D12" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(-81.2381, -29.7398)
+rotation = -1.15188
+
+[node name="AnimatedSprite2D13" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(-81.4254, 0.0390701)
+rotation = -1.64619
+
+[node name="AnimatedSprite2D14" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(-73.9847, 16.5827)
+rotation = -1.59729
+
+[node name="AnimatedSprite2D15" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(-60.6042, 28.6695)
+rotation = -2.15929
+
+[node name="AnimatedSprite2D16" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(-51.4002, 43.8644)
+rotation = -1.57441
+
+[node name="AnimatedSprite2D17" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(-53.7854, 60.7715)
+rotation = -1.50615
+
+[node name="AnimatedSprite2D18" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(-50.0154, 73.8675)
+rotation = -1.90869
+
+[node name="AnimatedSprite2D19" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(-39.0028, 79.9195)
+rotation = -3.07959
+
+[node name="AnimatedSprite2D20" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(-23.0295, 74.9589)
+rotation = -3.07959
+
+[node name="AnimatedSprite2D21" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(-2.09302, 83.2438)
+rotation = -2.67406
+
+[node name="AnimatedSprite2D22" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(21.2264, 85.1122)
+rotation = -3.12923
+
+[node name="AnimatedSprite2D23" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(37.5046, 76.0471)
+rotation = -3.48785
+
+[node name="AnimatedSprite2D24" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(54.6675, 65.1357)
+rotation = -3.90265
+
+[node name="AnimatedSprite2D25" parent="Hair" instance=ExtResource("6_7yxq2")]
+position = Vector2(62.4938, 57.0092)
+rotation = -3.25775
+
+[node name="Eyes" type="Sprite2D" parent="."]
+rotation = 1.57079
+texture = ExtResource("2_dygwk")
+
+[node name="Pupils" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_crk8h")
+rotation = 1.57079
+texture = ExtResource("3_aey1e")
+script = ExtResource("6_2mx2w")
+
+[node name="Body" type="Sprite2D" parent="."]
+rotation = 1.57079
+texture = ExtResource("1_c4y4a")
+
+[node name="ActionTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="SubactionTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="KnockbackCooldown" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.5
+one_shot = true
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="DashSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("5_tonf7")
+pitch_scale = 2.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="timeout" from="ActionTimer" to="." method="_on_action_timer_timeout"]
+[connection signal="timeout" from="SubactionTimer" to="." method="_on_subaction_timer_timeout"]

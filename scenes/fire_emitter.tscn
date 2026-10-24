@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://de1b0to1j0gb2"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_u0wcg"]
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_blbjr"]
+offsets = PackedFloat32Array(0, 0.281532, 1)
+colors = PackedColorArray(1, 0.975, 0.5, 0, 1, 0.95, 0, 0.705882, 0.8, 0, 0, 0.705882)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ta56v"]
+gradient = SubResource("Gradient_blbjr")
+
+[sub_resource type="Curve" id="Curve_rffgp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.116525, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.7157, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_iuc73"]
+curve = SubResource("Curve_rffgp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xbqle"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 20.0
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+direction = Vector3(0, -1, 0)
+spread = 30.0
+initial_velocity_max = 7.0
+gravity = Vector3(0, -8, 0)
+scale_min = 4.0
+scale_max = 6.0
+scale_curve = SubResource("CurveTexture_iuc73")
+color_ramp = SubResource("GradientTexture1D_ta56v")
+
+[node name="FireEmitter" type="GPUParticles2D"]
+z_index = -100
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_u0wcg")
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_xbqle")
+lifetime = 5.0
+visibility_rect = Rect2(-10, -100, 20, 110)

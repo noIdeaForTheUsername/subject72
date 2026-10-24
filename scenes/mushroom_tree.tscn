@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0klnpsspppm7"]
+
+[ext_resource type="Texture2D" uid="uid://dmk5lus1x4hj7" path="res://graphics/plants/mushroom_tree.png" id="1_fr42v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rqtqx"]
+size = Vector2(255, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sn83r"]
+size = Vector2(133, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jaw0k"]
+size = Vector2(120, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pwtb6"]
+size = Vector2(84, 8)
+
+[node name="MushroomTree" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(144, 288)
+scale = Vector2(2, 2)
+texture = ExtResource("1_fr42v")
+
+[node name="Platforms" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(137.5, 262)
+shape = SubResource("RectangleShape2D_rqtqx")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(216.5, 328)
+shape = SubResource("RectangleShape2D_sn83r")
+one_way_collision = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(69, 454)
+shape = SubResource("RectangleShape2D_jaw0k")
+one_way_collision = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(220, 516)
+shape = SubResource("RectangleShape2D_pwtb6")
+one_way_collision = true
+
+[node name="FlammableArea" type="Area2D" parent="."]
+z_index = -10
+collision_layer = 2048
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlammableArea"]
+polygon = PackedVector2Array(34, 576, 246, 576, 238, 572, 238, 563, 245, 562, 250, 558, 250, 549, 239, 543, 228, 542, 228, 540, 249, 537, 265, 527, 265, 518, 247, 509, 194, 508, 179, 515, 172, 523, 172, 527, 191, 536, 202, 540, 200, 548, 188, 562, 184, 562, 173, 545, 168, 513, 168, 452, 186, 431, 196, 412, 218, 355, 243, 351, 276, 343, 283, 337, 284, 326, 275, 317, 243, 316, 235, 314, 183, 315, 167, 317, 166, 329, 166, 347, 185, 357, 179, 365, 166, 381, 165, 349, 166, 317, 181, 313, 214, 304, 244, 298, 258, 291, 266, 283, 266, 267, 252, 256, 235, 247, 206, 242, 65, 242, 40, 245, 20, 253, 12, 265, 9, 269, 9, 280, 18, 292, 34, 302, 67, 306, 95, 314, 105, 318, 110, 326, 113, 340, 115, 424, 113, 425, 112, 444, 108, 530, 92, 515, 81, 496, 86, 482, 109, 479, 108, 443, 35, 443, 23, 449, 15, 449, 8, 458, 7, 470, 24, 480, 51, 485, 60, 501, 88, 543, 93, 555, 93, 564, 86, 565, 84, 555, 91, 555, 90, 548, 85, 542, 62, 542, 64, 552, 68, 557, 71, 569, 60, 568, 60, 559, 65, 557, 59, 541, 37, 540, 30, 551, 37, 557, 45, 565, 47, 572)

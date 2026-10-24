@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcsfxtrk2gu87"]
+
+[ext_resource type="Script" path="res://scripts/box_diode_controller.gd" id="1_31kef"]
+[ext_resource type="Texture2D" uid="uid://bcfvjhqifoy6w" path="res://graphics/bigBox.png" id="1_xi2ox"]
+[ext_resource type="PackedScene" uid="uid://cp4b5d3dlquj5" path="res://scenes/blinking_diode.tscn" id="2_3mypb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xhlor"]
+size = Vector2(64, 64)
+
+[node name="Box" type="StaticBody2D"]
+collision_layer = 513
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_xhlor")
+
+[node name="Sprite" type="Node2D" parent="." node_paths=PackedStringArray("diodes")]
+script = ExtResource("1_31kef")
+diodes = [NodePath("Diode1"), NodePath("Diode2"), NodePath("Diode3")]
+
+[node name="Box" type="Sprite2D" parent="Sprite"]
+texture = ExtResource("1_xi2ox")
+
+[node name="Diode1" parent="Sprite" instance=ExtResource("2_3mypb")]
+z_index = 1
+position = Vector2(-21, -3)
+min_time = 0.5
+randomized_start = false
+
+[node name="Diode2" parent="Sprite" instance=ExtResource("2_3mypb")]
+z_index = 1
+position = Vector2(-21, 0)
+min_time = 0.5
+randomized_start = false
+
+[node name="Diode3" parent="Sprite" instance=ExtResource("2_3mypb")]
+z_index = 1
+position = Vector2(-21, 3)
+min_time = 0.5
+randomized_start = false

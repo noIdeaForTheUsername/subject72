@@ -1,0 +1,232 @@
+[gd_scene load_steps=18 format=3 uid="uid://dgcyel6q64rk6"]
+
+[ext_resource type="Texture2D" uid="uid://b1y5xkf24j47w" path="res://graphics/plants/bush1C.png" id="1_v8mq4"]
+[ext_resource type="Shader" path="res://scripts/shaders/leaves.gdshader" id="2_hdowp"]
+[ext_resource type="Texture2D" uid="uid://b51fg0lwbikqi" path="res://graphics/plants/bush1C_leaves.png" id="3_gwa3c"]
+[ext_resource type="Script" path="res://scripts/leaves.gd" id="4_0lqep"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u66gi"]
+shader = ExtResource("2_hdowp")
+shader_parameter/relative_player_position = Vector2(-10000, 0)
+shader_parameter/sprite_size = null
+shader_parameter/minOpacity = 0.15
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jtci1"]
+size = Vector2(32, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yw7l2"]
+size = Vector2(34, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4eppd"]
+size = Vector2(34, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dvl3"]
+size = Vector2(30, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kv2vy"]
+size = Vector2(30, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w5bl3"]
+size = Vector2(30, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkmij"]
+size = Vector2(30, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nql8y"]
+size = Vector2(30, 4)
+
+[sub_resource type="Gradient" id="Gradient_x211j"]
+offsets = PackedFloat32Array(0, 0.854286)
+colors = PackedColorArray(0.721569, 0.0705882, 0.8, 1, 0.4893, 0.7, 0.406, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_l0cv5"]
+gradient = SubResource("Gradient_x211j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4n5ok"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 24.65
+direction = Vector3(1, 0.25, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 80.0
+gravity = Vector3(0, 2, 0)
+scale_max = 3.0
+color_initial_ramp = SubResource("GradientTexture1D_l0cv5")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dhsj4"]
+radius = 15.0
+height = 50.0
+
+[node name="Bush1" type="Node2D"]
+
+[node name="Branches" type="Sprite2D" parent="."]
+position = Vector2(168, 192)
+scale = Vector2(2, 2)
+texture = ExtResource("1_v8mq4")
+
+[node name="Leaves" type="Sprite2D" parent="." node_paths=PackedStringArray("pivot")]
+z_index = 3
+material = SubResource("ShaderMaterial_u66gi")
+position = Vector2(168, 192)
+scale = Vector2(2, 2)
+texture = ExtResource("3_gwa3c")
+script = ExtResource("4_0lqep")
+pivot = NodePath("..")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(108, 134)
+shape = SubResource("RectangleShape2D_jtci1")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(161, 224)
+shape = SubResource("RectangleShape2D_yw7l2")
+one_way_collision = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(237, 260)
+shape = SubResource("RectangleShape2D_4eppd")
+one_way_collision = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(307, 324)
+shape = SubResource("RectangleShape2D_6dvl3")
+one_way_collision = true
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(139, 322)
+shape = SubResource("RectangleShape2D_kv2vy")
+one_way_collision = true
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(113, 292)
+shape = SubResource("RectangleShape2D_w5bl3")
+one_way_collision = true
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(79, 258)
+shape = SubResource("RectangleShape2D_rkmij")
+one_way_collision = true
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(35, 326)
+shape = SubResource("RectangleShape2D_nql8y")
+one_way_collision = true
+
+[node name="ParticleEmitters" type="Node2D" parent="."]
+z_index = 25
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(107, 132)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_4n5ok")
+lifetime = 15.0
+preprocess = 5.0
+visibility_rect = Rect2(-100, -100, 1500, 1000)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(161, 225)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_4n5ok")
+lifetime = 15.0
+preprocess = 5.0
+visibility_rect = Rect2(-100, -100, 1500, 1000)
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(237, 263)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_4n5ok")
+lifetime = 15.0
+preprocess = 5.0
+visibility_rect = Rect2(-100, -100, 1500, 1000)
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(309, 319)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_4n5ok")
+lifetime = 15.0
+preprocess = 5.0
+visibility_rect = Rect2(-100, -100, 1500, 1000)
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(139, 324)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_4n5ok")
+lifetime = 15.0
+preprocess = 5.0
+visibility_rect = Rect2(-100, -100, 1500, 1000)
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(114, 293)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_4n5ok")
+lifetime = 15.0
+preprocess = 5.0
+visibility_rect = Rect2(-100, -100, 1500, 1000)
+
+[node name="GPUParticles2D7" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(80, 258)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_4n5ok")
+lifetime = 15.0
+preprocess = 5.0
+visibility_rect = Rect2(-100, -100, 1500, 1000)
+
+[node name="GPUParticles2D8" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(36, 326)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_4n5ok")
+lifetime = 15.0
+preprocess = 5.0
+visibility_rect = Rect2(-100, -100, 1500, 1000)
+
+[node name="FlammableArea" type="Area2D" parent="."]
+z_index = -1
+collision_layer = 2048
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlammableArea"]
+position = Vector2(108, 132)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_dhsj4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="FlammableArea"]
+position = Vector2(162, 224)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_dhsj4")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="FlammableArea"]
+position = Vector2(78, 260)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_dhsj4")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="FlammableArea"]
+position = Vector2(113, 294)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_dhsj4")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="FlammableArea"]
+position = Vector2(138, 324)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_dhsj4")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="FlammableArea"]
+position = Vector2(234, 266)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_dhsj4")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="FlammableArea"]
+position = Vector2(36, 324)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_dhsj4")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="FlammableArea"]
+position = Vector2(307, 319)
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_dhsj4")

@@ -1,0 +1,185 @@
+[gd_scene load_steps=6 format=3 uid="uid://bc0nlnnod2227"]
+
+[ext_resource type="Texture2D" uid="uid://vlbofhdcs72y" path="res://graphics/server.png" id="1_3qj4a"]
+[ext_resource type="Texture2D" uid="uid://coyor2tffjohx" path="res://graphics/diode.png" id="2_rdik7"]
+[ext_resource type="Script" path="res://scripts/server_diodes.gd" id="3_iahc4"]
+
+[sub_resource type="GDScript" id="GDScript_6u62s"]
+script/source = "extends Node2D
+#
+#
+#const S_DIODE_OFFSETS := {
+	#\"first\" = Vector2(6, 6),
+	#\"same_row\" = Vector2(3, 0),
+	#\"row\" = Vector2(0, 9),
+	#\"column\" = Vector2(0, 28),
+	#\"diodes_in_row\" = 8,
+	#\"num_rows\" = 9,
+	#\"num_columns\" = 2
+#}
+#
+#
+#class SmallDiode:
+	#var id: int
+	#var pos: Vector2
+	#func _init(id: int, pos: Vector2) -> void:
+		#self.id = id
+		#self.pos = pos
+	#func update(multimesh: MultiMesh) -> void:
+		#multimesh.set_instance_transform_2d(self.id, Transform2D(0.0, self.pos))
+		#multimesh.set_instance_color(self.id, Color.RED)
+		#print(\"updating, pos: \", self.pos)
+#
+#
+#var s_diodes: Array[SmallDiode] = []
+#@onready var s_multimesh_instance: MultiMeshInstance2D = $SmallLightMultiMesh
+#var s_multimesh: MultiMesh
+#
+#
+#func _ready() -> void:
+	#s_multimesh = s_multimesh_instance.multimesh
+	#
+	#var num_instances := S_DIODE_OFFSETS[\"diodes_in_row\"] * S_DIODE_OFFSETS[\"num_rows\"] * S_DIODE_OFFSETS[\"num_columns\"]
+	#s_multimesh.instance_count = num_instances
+	#s_diodes.resize(num_instances)
+	#
+	#var id := 0
+	#for column in S_DIODE_OFFSETS[\"num_columns\"]:
+		#var pos := S_DIODE_OFFSETS[\"first\"] + column * S_DIODE_OFFSETS[\"column\"]
+		#for row in S_DIODE_OFFSETS[\"num_rows\"]:
+			#for diode_num in S_DIODE_OFFSETS[\"diodes_in_row\"]:
+				#s_diodes[id] = SmallDiode.new(id, pos)
+				#s_diodes[id].update(s_multimesh)
+				#pos += S_DIODE_OFFSETS[\"same_row\"]
+				#id += 1
+			#pos = pos + S_DIODE_OFFSETS[\"row\"] - (S_DIODE_OFFSETS[\"diodes_in_row\"] - 1) * S_DIODE_OFFSETS[\"same_row\"]
+	#
+	#print(s_diodes)
+	#
+#func _process(delta: float) -> void:
+	#for diode in s_diodes:
+		#print(diode.id)
+		#diode.update(s_multimesh)
+"
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_olblt"]
+light_mode = 1
+
+[node name="Server" type="Node2D"]
+script = SubResource("GDScript_6u62s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3qj4a")
+
+[node name="Diodes" type="Node2D" parent="."]
+z_index = 1
+material = SubResource("CanvasItemMaterial_olblt")
+script = ExtResource("3_iahc4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Diodes"]
+modulate = Color(0, 1, 0, 1)
+use_parent_material = true
+position = Vector2(-5, -40)
+texture = ExtResource("2_rdik7")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Diodes"]
+modulate = Color(0, 1, 0, 1)
+use_parent_material = true
+position = Vector2(-5, -30)
+texture = ExtResource("2_rdik7")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Diodes"]
+modulate = Color(0, 1, 0, 1)
+use_parent_material = true
+position = Vector2(-5, -20)
+texture = ExtResource("2_rdik7")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Diodes"]
+modulate = Color(0, 1, 0, 1)
+use_parent_material = true
+position = Vector2(-5, -10)
+texture = ExtResource("2_rdik7")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Diodes"]
+modulate = Color(0, 1, 0, 1)
+use_parent_material = true
+position = Vector2(-5, 0)
+texture = ExtResource("2_rdik7")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Diodes"]
+modulate = Color(0, 1, 0, 1)
+use_parent_material = true
+position = Vector2(-5, 10)
+texture = ExtResource("2_rdik7")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Diodes"]
+modulate = Color(0, 1, 0, 1)
+use_parent_material = true
+position = Vector2(-5, 20)
+texture = ExtResource("2_rdik7")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Diodes"]
+modulate = Color(0, 1, 0, 1)
+use_parent_material = true
+position = Vector2(-5, 30)
+texture = ExtResource("2_rdik7")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Diodes"]
+modulate = Color(0, 1, 0, 1)
+use_parent_material = true
+position = Vector2(-5, 40)
+texture = ExtResource("2_rdik7")
+
+[node name="Sprite2D10" type="Sprite2D" parent="Diodes"]
+modulate = Color(0, 1, 0, 1)
+use_parent_material = true
+position = Vector2(24, 40)
+texture = ExtResource("2_rdik7")
+
+[node name="Sprite2D11" type="Sprite2D" parent="Diodes"]
+modulate = Color(0, 1, 0, 1)
+use_parent_material = true
+position = Vector2(24, 30)
+texture = ExtResource("2_rdik7")
+
+[node name="Sprite2D12" type="Sprite2D" parent="Diodes"]
+modulate = Color(0, 1, 0, 1)
+use_parent_material = true
+position = Vector2(24, 20)
+texture = ExtResource("2_rdik7")
+
+[node name="Sprite2D13" type="Sprite2D" parent="Diodes"]
+modulate = Color(0, 1, 0, 1)
+use_parent_material = true
+position = Vector2(24, 10)
+texture = ExtResource("2_rdik7")
+
+[node name="Sprite2D14" type="Sprite2D" parent="Diodes"]
+modulate = Color(0, 1, 0, 1)
+use_parent_material = true
+position = Vector2(24, 0)
+texture = ExtResource("2_rdik7")
+
+[node name="Sprite2D15" type="Sprite2D" parent="Diodes"]
+modulate = Color(0, 1, 0, 1)
+use_parent_material = true
+position = Vector2(24, -10)
+texture = ExtResource("2_rdik7")
+
+[node name="Sprite2D16" type="Sprite2D" parent="Diodes"]
+modulate = Color(0, 1, 0, 1)
+use_parent_material = true
+position = Vector2(24, -20)
+texture = ExtResource("2_rdik7")
+
+[node name="Sprite2D17" type="Sprite2D" parent="Diodes"]
+modulate = Color(0, 1, 0, 1)
+use_parent_material = true
+position = Vector2(24, -30)
+texture = ExtResource("2_rdik7")
+
+[node name="Sprite2D18" type="Sprite2D" parent="Diodes"]
+modulate = Color(0, 1, 0, 1)
+use_parent_material = true
+position = Vector2(24, -40)
+texture = ExtResource("2_rdik7")

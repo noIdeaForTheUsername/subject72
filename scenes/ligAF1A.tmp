@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://d2ou76nh1sjm4"]
+
+[ext_resource type="Script" path="res://scripts/light.gd" id="1_ht7p8"]
+[ext_resource type="Texture2D" uid="uid://dng7studsyddb" path="res://graphics/lamp_v2_center.png" id="1_l7xqa"]
+[ext_resource type="Texture2D" uid="uid://c4122s7cw2r7m" path="res://graphics/lamp_v2_right.png" id="2_4pbr7"]
+[ext_resource type="Texture2D" uid="uid://v4fpnqn38kun" path="res://graphics/lamp_v2_left.png" id="3_565oe"]
+
+[sub_resource type="Gradient" id="Gradient_hm2an"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7jdq6"]
+gradient = SubResource("Gradient_hm2an")
+width = 130
+height = 20
+fill = 1
+fill_from = Vector2(0.5, 0.3)
+fill_to = Vector2(1, 0.3)
+
+[node name="BiodomeLight" type="StaticBody2D"]
+script = ExtResource("1_ht7p8")
+energy = null
+blinks_per_min = null
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-79.0888, 0.0118957, -72.9967, 7.97663, 73, 8, 79.1222, -0.00140953)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Right" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(64, 16)
+texture = ExtResource("2_4pbr7")
+
+[node name="Left" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-64, 16)
+texture = ExtResource("3_565oe")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Sprite2D"]
+offset_left = -48.0
+offset_right = 48.0
+offset_bottom = 40.0
+scale = Vector2(1, 0.8)
+texture = ExtResource("1_l7xqa")
+axis_stretch_horizontal = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 5.972)
+scale = Vector2(1.67, 1)
+energy = 0.3
+texture = SubResource("GradientTexture2D_7jdq6")
+
+[node name="BlinkTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[connection signal="timeout" from="BlinkTimer" to="." method="_on_blink_timer_timeout"]

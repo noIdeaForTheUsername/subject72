@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjrsh4j24pc2r"]
+
+[ext_resource type="Texture2D" uid="uid://bo8xn6v0y27ie" path="res://graphics/control_panel/light_green.png" id="1_0ukn8"]
+[ext_resource type="Script" path="res://scripts/status_light.gd" id="2_obwty"]
+
+[node name="Light" type="TextureRect"]
+offset_right = 4.0
+offset_bottom = 4.0
+scale = Vector2(20, 20)
+pivot_offset = Vector2(2, 2)
+texture = ExtResource("1_0ukn8")
+script = ExtResource("2_obwty")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

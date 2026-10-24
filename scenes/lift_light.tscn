@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh4mg6wmq4nlc"]
+
+[ext_resource type="Texture2D" uid="uid://bkhqqpror3rq5" path="res://graphics/elevatorLight.png" id="1_t7twk"]
+
+[sub_resource type="Gradient" id="Gradient_qjvg2"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wj1qr"]
+gradient = SubResource("Gradient_qjvg2")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 1)
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_t7twk")
+
+[node name="InternalLight" type="PointLight2D" parent="."]
+position = Vector2(0, 0.5)
+scale = Vector2(0.325, 0.22)
+color = Color(1, 0.901961, 0.403922, 1)
+range_z_max = -200
+texture = SubResource("GradientTexture2D_wj1qr")

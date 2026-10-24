@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6s7r26peawiw"]
+
+[ext_resource type="Script" path="res://scripts/boss_spike_projectile.gd" id="1_7j81w"]
+
+[node name="BossSpikeProjectile" type="Area2D"]
+collision_layer = 32
+collision_mask = 512
+script = ExtResource("1_7j81w")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

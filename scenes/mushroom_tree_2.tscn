@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuuk4iy0jiyhs"]
+
+[ext_resource type="Texture2D" uid="uid://cak3mk81jkwc" path="res://graphics/plants/mushroom_tree2.png" id="1_ejpqp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e031m"]
+size = Vector2(148, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xahyt"]
+size = Vector2(128, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4e41h"]
+size = Vector2(76, 4)
+
+[node name="MushroomTree2" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(144, 192)
+scale = Vector2(2, 2)
+texture = ExtResource("1_ejpqp")
+
+[node name="Platforms" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(182, 130)
+shape = SubResource("RectangleShape2D_e031m")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(79, 260)
+shape = SubResource("RectangleShape2D_xahyt")
+one_way_collision = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(187, 178)
+shape = SubResource("RectangleShape2D_4e41h")
+one_way_collision = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Platforms"]
+position = Vector2(167, 322)
+shape = SubResource("RectangleShape2D_4e41h")
+one_way_collision = true
+
+[node name="FlammableArea" type="Area2D" parent="."]
+z_index = -10
+collision_layer = 2048
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlammableArea"]
+polygon = PackedVector2Array(122, 383, 157, 383, 171, 338, 201, 335, 204, 325, 194, 317, 188, 316, 199, 268, 202, 227, 213, 226, 216, 218, 203, 213, 202, 193, 219, 189, 225, 179, 215, 173, 201, 173, 201, 157, 243, 152, 257, 137, 248, 126, 188, 123, 135, 125, 116, 125, 107, 136, 121, 152, 173, 156, 173, 173, 157, 174, 149, 180, 149, 184, 159, 190, 174, 192, 173, 236, 171, 261, 160, 262, 155, 267, 159, 274, 170, 275, 165, 297, 155, 317, 138, 318, 129, 324, 130, 330, 143, 336, 135, 355, 129, 356, 107, 341, 102, 335, 98, 313, 104, 312, 108, 306, 104, 300, 95, 299, 91, 281, 109, 279, 134, 273, 141, 267, 141, 261, 129, 256, 119, 255, 78, 253, 41, 254, 23, 257, 16, 261, 15, 267, 21, 273, 40, 277, 65, 280, 69, 304, 74, 329, 67, 333, 63, 336, 63, 340, 68, 344, 82, 345, 85, 351, 89, 359, 107, 370, 112, 375, 117, 377)

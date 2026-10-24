@@ -1,0 +1,212 @@
+[gd_scene load_steps=13 format=3 uid="uid://cy3yv0vf0vab5"]
+
+[ext_resource type="Texture2D" uid="uid://ckhfhgiqg5ctm" path="res://graphics/plants/tree1.png" id="1_df3nv"]
+[ext_resource type="Shader" path="res://scripts/shaders/leaves.gdshader" id="2_k2dvr"]
+[ext_resource type="Texture2D" uid="uid://pjrdxtjy03ak" path="res://graphics/plants/tree1_leaves.png" id="3_kl80i"]
+[ext_resource type="Script" path="res://scripts/leaves.gd" id="4_1gel5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5e2xi"]
+shader = ExtResource("2_k2dvr")
+shader_parameter/relative_player_position = null
+shader_parameter/sprite_size = null
+shader_parameter/minOpacity = 0.15
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxbjj"]
+size = Vector2(94, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58t5v"]
+size = Vector2(76, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jchh0"]
+size = Vector2(82, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7v3s"]
+size = Vector2(94, 4)
+
+[sub_resource type="Gradient" id="Gradient_0ie54"]
+colors = PackedColorArray(0.69, 0.2208, 0.61962, 1, 0.457547, 0.4416, 0.92, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qqf4f"]
+gradient = SubResource("Gradient_0ie54")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jchew"]
+lifetime_randomness = 0.2
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 25.15
+direction = Vector3(1, 0.5, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 8, 0)
+scale_max = 5.0
+color_initial_ramp = SubResource("GradientTexture1D_qqf4f")
+
+[node name="Tree1" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Main" type="Sprite2D" parent="."]
+position = Vector2(128, 272)
+scale = Vector2(2, 2)
+texture = ExtResource("1_df3nv")
+
+[node name="DisappearingLeaves" type="Sprite2D" parent="." node_paths=PackedStringArray("pivot")]
+z_index = 3
+material = SubResource("ShaderMaterial_5e2xi")
+position = Vector2(128, 272)
+scale = Vector2(2, 2)
+texture = ExtResource("3_kl80i")
+script = ExtResource("4_1gel5")
+pivot = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(175, 236)
+shape = SubResource("RectangleShape2D_jxbjj")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(98, 296)
+shape = SubResource("RectangleShape2D_58t5v")
+one_way_collision = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(85, 418)
+shape = SubResource("RectangleShape2D_jchh0")
+one_way_collision = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(183, 486)
+shape = SubResource("RectangleShape2D_d7v3s")
+one_way_collision = true
+
+[node name="ParticleEmitters" type="Node2D" parent="."]
+z_index = 25
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(166, 175)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_jchew")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 3000, 2000)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(75, 230)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_jchew")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 3000, 2000)
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(26, 155)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_jchew")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 3000, 2000)
+
+[node name="GPUParticles2D4" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(46, 90)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_jchew")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 3000, 2000)
+
+[node name="GPUParticles2D5" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(82, 149)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_jchew")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 3000, 2000)
+
+[node name="GPUParticles2D6" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(134, 125)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_jchew")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 3000, 2000)
+
+[node name="GPUParticles2D7" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(108, 60)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_jchew")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 3000, 2000)
+
+[node name="GPUParticles2D8" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(179, 102)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_jchew")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 3000, 2000)
+
+[node name="GPUParticles2D9" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(188, 47)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_jchew")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 3000, 2000)
+
+[node name="GPUParticles2D10" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(126, 346)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_jchew")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 3000, 2000)
+
+[node name="GPUParticles2D11" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(205, 383)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_jchew")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 3000, 2000)
+
+[node name="GPUParticles2D12" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(69, 296)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_jchew")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 3000, 2000)
+
+[node name="GPUParticles2D13" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(171, 238)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_jchew")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 3000, 2000)
+
+[node name="GPUParticles2D14" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(48, 416)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_jchew")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 3000, 2000)
+
+[node name="GPUParticles2D15" type="GPUParticles2D" parent="ParticleEmitters"]
+position = Vector2(158, 487)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_jchew")
+lifetime = 20.0
+preprocess = 10.0
+visibility_rect = Rect2(-1000, -100, 3000, 2000)
+
+[node name="FlammableArea" type="Area2D" parent="."]
+z_index = -10
+collision_layer = 2048
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlammableArea"]
+polygon = PackedVector2Array(68, 544, 158, 544, 158, 534, 149, 534, 136, 520, 134, 512, 134, 492, 142, 495, 148, 504, 163, 510, 172, 504, 209, 505, 212, 511, 232, 502, 234, 485, 239, 475, 219, 465, 218, 472, 209, 469, 199, 467, 199, 473, 177, 469, 179, 478, 166, 476, 138, 470, 142, 442, 158, 416, 167, 393, 176, 386, 182, 394, 193, 396, 201, 404, 202, 423, 205, 429, 215, 426, 227, 420, 230, 407, 226, 406, 232, 390, 228, 376, 209, 368, 195, 364, 184, 362, 186, 351, 186, 322, 178, 308, 161, 292, 141, 273, 127, 244, 132, 242, 138, 254, 149, 249, 169, 255, 174, 258, 193, 251, 203, 255, 224, 246, 226, 227, 206, 220, 205, 226, 187, 221, 184, 223, 162, 223, 163, 230, 146, 225, 123, 225, 121, 215, 132, 210, 138, 202, 149, 206, 159, 196, 177, 197, 188, 171, 175, 149, 160, 145, 164, 156, 153, 160, 147, 166, 137, 172, 116, 184, 117, 191, 111, 191, 106, 173, 143, 147, 170, 121, 180, 127, 196, 118, 214, 94, 207, 74, 212, 50, 193, 30, 158, 22, 166, 44, 178, 57, 170, 80, 161, 85, 146, 69, 124, 56, 132, 48, 116, 41, 99, 50, 83, 48, 86, 60, 93, 74, 108, 81, 125, 92, 128, 111, 115, 123, 85, 134, 67, 126, 57, 110, 63, 95, 79, 102, 83, 116, 94, 111, 94, 90, 75, 79, 53, 76, 39, 74, 32, 88, 34, 100, 34, 123, 34, 134, 28, 142, 14, 150, 16, 166, 22, 189, 30, 187, 35, 174, 41, 155, 46, 154, 57, 163, 66, 175, 79, 167, 88, 176, 90, 191, 97, 208, 89, 209, 72, 201, 65, 219, 55, 215, 57, 235, 63, 258, 77, 264, 92, 260, 99, 244, 90, 244, 81, 234, 96, 228, 104, 228, 112, 253, 116, 274, 126, 284, 118, 285, 117, 291, 98, 289, 80, 286, 58, 281, 52, 287, 53, 299, 59, 308, 74, 315, 84, 317, 99, 314, 111, 321, 120, 315, 133, 312, 140, 303, 158, 323, 161, 341, 152, 336, 141, 333, 141, 338, 118, 335, 112, 336, 112, 350, 103, 358, 104, 372, 109, 380, 123, 379, 132, 368, 126, 356, 138, 354, 149, 358, 149, 361, 158, 362, 158, 368, 149, 377, 136, 398, 127, 413, 107, 404, 93, 399, 91, 405, 77, 405, 59, 398, 59, 404, 46, 402, 32, 404, 28, 409, 32, 417, 35, 424, 44, 432, 56, 436, 69, 441, 78, 441, 87, 437, 96, 442, 111, 443, 106, 459, 96, 488, 92, 508, 91, 530, 87, 539)

@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://c2bjlxrc8x2tc"]
+
+[ext_resource type="Texture2D" uid="uid://c40gpbkg8qel7" path="res://graphics/boss/hair-4.png" id="1_3412d"]
+[ext_resource type="Texture2D" uid="uid://c77d2idhrrfl2" path="res://graphics/boss/hair-3.png" id="1_pfq0q"]
+[ext_resource type="Texture2D" uid="uid://dbokqq1sf5oir" path="res://graphics/boss/hair-2.png" id="2_wxrc2"]
+[ext_resource type="Texture2D" uid="uid://doojwlx2xl78i" path="res://graphics/boss/hair-1.png" id="3_jeqe6"]
+[ext_resource type="Texture2D" uid="uid://cjblfcm145git" path="res://graphics/boss/hair0.png" id="4_bhair"]
+[ext_resource type="Texture2D" uid="uid://7goo6ce7oonl" path="res://graphics/boss/hair1.png" id="5_nlj6y"]
+[ext_resource type="Texture2D" uid="uid://ckfl82tgi1yt7" path="res://graphics/boss/hair2.png" id="6_ovcve"]
+[ext_resource type="Texture2D" uid="uid://ohdm5sim2bag" path="res://graphics/boss/hair3.png" id="7_th64t"]
+[ext_resource type="Texture2D" uid="uid://b8o4mpgxhmxo" path="res://graphics/boss/hair4.png" id="9_k5btc"]
+[ext_resource type="Script" path="res://scripts/boss_hair.gd" id="11_ofoiq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ar0c7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3412d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_pfq0q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wxrc2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jeqe6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bhair")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nlj6y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ovcve")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_th64t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_k5btc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ovcve")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nlj6y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_bhair")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jeqe6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wxrc2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+position = Vector2(0, -9.12309)
+scale = Vector2(1, 1.5)
+sprite_frames = SubResource("SpriteFrames_ar0c7")
+autoplay = "default"
+frame = 6
+frame_progress = 0.283129
+script = ExtResource("11_ofoiq")
